@@ -1,2 +1,238 @@
-# Auto detect text files and perform LF normalization
-* text=auto
+<!doctype html>
+<html lang="uk">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Односторінковий сайт — Приклад</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg:#0f1724;--card:#0b1220;--accent:#06b6d4;--muted:#9aa8b3;--glass: rgba(255,255,255,0.04);
+      --radius:16px; --gap:24px; font-family: 'Inter',system-ui,Segoe UI,Roboto,Arial;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%;margin:0;background:linear-gradient(180deg,#071025 0%, #081426 60%);color:#e6eef6}
+    a{color:inherit;text-decoration:none}
+    .container{max-width:1100px;margin:0 auto;padding:36px}
+
+    /* Header */
+    header{display:flex;align-items:center;justify-content:space-between;padding:12px 0}
+    .logo{display:flex;gap:12px;align-items:center}
+    .logo .mark{width:44px;height:44px;border-radius:10px;background:linear-gradient(135deg,var(--accent),#7c3aed);display:flex;align-items:center;justify-content:center;font-weight:700;color:#042028}
+    nav ul{display:flex;gap:18px;list-style:none;margin:0;padding:0}
+    nav a{padding:8px 12px;border-radius:8px;font-weight:600}
+    nav a:hover{background:var(--glass)}
+    .cta{background:var(--accent);padding:10px 14px;border-radius:10px;color:#042028;font-weight:700}
+
+    /* Hero */
+    .hero{display:grid;grid-template-columns:1fr 420px;gap:32px;align-items:center;padding:48px 0}
+    .hero h1{font-size:clamp(28px,4vw,44px);line-height:1.02;margin:0}
+    .hero p{color:var(--muted);margin:14px 0 22px}
+    .controls{display:flex;gap:12px}
+    .card{background:linear-gradient(180deg,rgba(255,255,255,0.02),transparent);padding:20px;border-radius:12px;box-shadow:0 6px 24px rgba(2,6,23,0.6);}
+
+    /* Features */
+    .features{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:18px}
+    .feature-item{padding:18px;border-radius:12px;background:var(--card);min-height:130px}
+    .feature-item h4{margin:0 0 8px}
+    .muted{color:var(--muted);font-size:14px}
+
+    /* About + Contact */
+    section{padding:48px 0}
+    .grid-2{display:grid;grid-template-columns:1fr 1fr;gap:24px;align-items:start}
+
+    /* Portfolio */
+    .gallery{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+    .thumb{height:120px;border-radius:10px;background:linear-gradient(135deg,#0b1830,#072033);display:flex;align-items:center;justify-content:center;color:var(--muted)}
+
+    /* Footer */
+    footer{padding:28px 0;text-align:center;color:var(--muted);font-size:14px}
+
+    /* Responsive */
+    @media (max-width:900px){
+      .hero{grid-template-columns:1fr;}
+      .features{grid-template-columns:1fr}
+      .grid-2{grid-template-columns:1fr}
+      .gallery{grid-template-columns:repeat(2,1fr)}
+      nav ul{display:none}
+      .mobile-toggle{display:inline-flex}
+    }
+    .mobile-toggle{display:none;gap:8px;align-items:center}
+    .mobile-menu{display:none;flex-direction:column;gap:8px;padding:12px;margin-top:8px}
+    .mobile-menu a{padding:8px;border-radius:8px}
+    .show{display:flex}
+
+    /* small touches */
+    input,textarea{width:100%;padding:10px;border-radius:8px;border:1px solid rgba(255,255,255,0.04);background:transparent;color:inherit}
+    button{cursor:pointer;border:0;padding:10px 14px;border-radius:10px}
+    .btn-outline{background:transparent;border:1px solid rgba(255,255,255,0.06)}
+  </style>
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div class="logo">
+        <div class="mark">UA</div>
+        <div>
+          <div style="font-weight:700">Мій Сайт</div>
+          <div class="muted" style="font-size:13px">Односторінковий промо-лендінг</div>
+        </div>
+      </div>
+
+      <div style="display:flex;align-items:center;gap:14px">
+        <nav>
+          <ul>
+            <li><a href="#home">Головна</a></li>
+            <li><a href="#about">Про нас</a></li>
+            <li><a href="#works">Роботи</a></li>
+            <li><a href="#contact">Контакти</a></li>
+          </ul>
+        </nav>
+        <div class="mobile-toggle">
+          <button class="btn-outline" id="menuBtn">Меню</button>
+        </div>
+        <a class="cta" href="#contact">Зв'язатися</a>
+      </div>
+    </header>
+
+    <div id="mobileMenu" class="mobile-menu card">
+      <a href="#home">Головна</a>
+      <a href="#about">Про нас</a>
+      <a href="#works">Роботи</a>
+      <a href="#contact">Контакти</a>
+    </div>
+
+    <main>
+      <section id="home" class="hero">
+        <div>
+          <h1>Сучасний односторінковий сайт для вашого проекту</h1>
+          <p>Готовий шаблон: швидко стартуйте з привабливою презентацією — показуйте послуги, роботи та збирайте контакти.</p>
+          <div class="controls">
+            <a class="cta" href="#contact">Замовити консультацію</a>
+            <a class="btn-outline" href="#works">Портфоліо</a>
+          </div>
+
+          <div class="card" style="margin-top:22px">
+            <div style="display:flex;gap:12px;align-items:center">
+              <div style="width:64px;height:64px;border-radius:12px;background:linear-gradient(135deg,#072a34,#033047);display:flex;align-items:center;justify-content:center;font-weight:700">24/7</div>
+              <div>
+                <div style="font-weight:700">Підтримка та оновлення</div>
+                <div class="muted">Ми допоможемо налаштувати сайт під ваш бренд</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <aside>
+          <div class="card">
+            <h3 style="margin-top:0">Наші послуги</h3>
+            <div class="features">
+              <div class="feature-item">
+                <h4>Дизайн</h4>
+                <div class="muted">Сучасний UI/UX, адаптація під мобільні пристрої.</div>
+              </div>
+              <div class="feature-item">
+                <h4>Розробка</h4>
+                <div class="muted">Швидка реалізація, SEO-оптимізація, швидкість завантаження.</div>
+              </div>
+              <div class="feature-item">
+                <h4>Маркетинг</h4>
+                <div class="muted">Лендінги, конверсійні форми, інтеграції з аналітикою.</div>
+              </div>
+            </div>
+          </div>
+        </aside>
+      </section>
+
+      <section id="about">
+        <div class="card">
+          <div class="grid-2">
+            <div>
+              <h2>Про нас</h2>
+              <p class="muted">Ми — команда дизайнерів та розробників, що створюють прості й естетичні односторінкові сайти. Наша мета — допомогти бізнесу швидко отримати онлайн-присутність та перші ліди.</p>
+              <ul class="muted">
+                <li>Гарантія якості</li>
+                <li>Адаптивність під всі пристрої</li>
+                <li>Підтримка та аналітика</li>
+              </ul>
+            </div>
+            <div>
+              <h3>Чому обирають нас</h3>
+              <p class="muted">Ми поєднуємо швидкість, безпеку та простоту керування. У роботу входить дизайн, верстка та консультація з маркетингу.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="works">
+        <h2>Портфоліо</h2>
+        <div class="gallery" style="margin-top:12px">
+          <div class="thumb">Приклад 1</div>
+          <div class="thumb">Приклад 2</div>
+          <div class="thumb">Приклад 3</div>
+          <div class="thumb">Приклад 4</div>
+          <div class="thumb">Приклад 5</div>
+          <div class="thumb">Приклад 6</div>
+        </div>
+      </section>
+
+      <section id="contact">
+        <h2>Зв'язатися</h2>
+        <div class="card" style="margin-top:12px">
+          <form onsubmit="handleSubmit(event)">
+            <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px">
+              <input type="text" id="name" placeholder="Ім'я" required />
+              <input type="email" id="email" placeholder="Email" required />
+            </div>
+            <div style="margin-top:12px">
+              <textarea id="message" rows="4" placeholder="Повідомлення"></textarea>
+            </div>
+            <div style="display:flex;gap:12px;margin-top:12px">
+              <button class="cta" type="submit">Відправити</button>
+              <button class="btn-outline" type="button" onclick="scrollToTop()">Вгору</button>
+            </div>
+            <p id="note" class="muted" style="margin-top:12px">* Форма демонстраційна — додайте бекенд або інтеграцію з email/CRM.</p>
+          </form>
+        </div>
+      </section>
+
+    </main>
+
+    <footer>
+      © "Мій Сайт" — Усі права захищені. <span class="muted">Поштa: hello@example.com</span>
+    </footer>
+  </div>
+
+  <script>
+    // Mobile menu toggle
+    const menuBtn = document.getElementById('menuBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+    if(menuBtn){
+      menuBtn.addEventListener('click', ()=> mobileMenu.classList.toggle('show'))
+    }
+
+    // Smooth scroll for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(a=>{
+      a.addEventListener('click', e=>{
+        const href = a.getAttribute('href');
+        if(href.length>1){
+          e.preventDefault();
+          document.querySelector(href).scrollIntoView({behavior:'smooth',block:'start'});
+          mobileMenu.classList.remove('show');
+        }
+      })
+    })
+
+    // Form handler (demo)
+    function handleSubmit(e){
+      e.preventDefault();
+      const name = document.getElementById('name').value || 'Гість';
+      const note = document.getElementById('note');
+      note.textContent = `Дякуємо, ${name}! Ваше повідомлення отримано (демо).`;
+      e.target.reset();
+    }
+    function scrollToTop(){window.scrollTo({top:0,behavior:'smooth'})}
+  </script>
+</body>
+</html>
+
